@@ -37,6 +37,7 @@ function Articles({ state, fetchArticles, deleteArticle }) {
                     </Button>
                   </List.Content>
                   <List.Header>BY : {toCapitalise(e.by)}</List.Header>
+                  <List.Content>SCORE : {e.score}</List.Content>
                   <List.Content>TIME : {getPost(e.time)}</List.Content>
                   <List.Content>URL : {e.url}</List.Content>
                   <List.Content>TITLE : {e.title}</List.Content>
