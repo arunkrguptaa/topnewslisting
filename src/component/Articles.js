@@ -1,7 +1,14 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getArticle, delArticle } from "../action";
-import { List, Segment, Button } from "semantic-ui-react";
+import {
+  List,
+  Segment,
+  Button,
+  Dimmer,
+  Loader,
+  Image
+} from "semantic-ui-react";
 
 function toCapitalise(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
@@ -10,10 +17,19 @@ function getPost(time) {
   const dt = new Date(time);
   return dt.getDate() + "/" + dt.getMonth() + 1 + "/" + dt.getFullYear();
 }
-function Articles({ state, fetchArticles, deleteArticle }) {
+function Articles({ state, fetchArticles, deleteArticle, loading }) {
   useEffect(() => {
     fetchArticles();
   }, [fetchArticles]);
+  if (loading)
+    return (
+      <Segment>
+        <Dimmer active>
+          <Loader />
+        </Dimmer>
+        <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
+      </Segment>
+    );
   return (
     <>
       <Segment inverted>
@@ -51,7 +67,8 @@ function Articles({ state, fetchArticles, deleteArticle }) {
 }
 const mapStateToProps = state => {
   return {
-    state: state.article
+    state: state.article,
+    loading: state.loading
   };
 };
 
