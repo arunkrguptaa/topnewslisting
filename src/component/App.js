@@ -1,36 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "../styles.css";
-import { connect } from "react-redux";
-import { getArticle } from "../action";
+import Articles from "./Articles";
+import { Divider } from "semantic-ui-react";
 
-function App({ state, fetchEvents }) {
-  useEffect(() => {
-    fetchEvents();
-  }, [fetchEvents]);
+function App() {
   return (
     <div className="App">
       <h2>Top News Articles</h2>
-      {state &&
-        state.map(e => {
-          return <div>{e.title}</div>;
-        })}
+      <Divider />
+      <Articles />
     </div>
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    state: state.article
-  };
-};
-
-const mapDispatchToProps = dispatch => ({
-  fetchEvents: () => {
-    dispatch(getArticle());
-  }
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default App;

@@ -14,7 +14,6 @@ function* fetchNews() {
       return yield fetch(singleList(e)).then(response => response.json());
     })
   );
-  // console.log(listAll);
   yield put(setArticle(listAll));
 }
 function* actionWatcher() {

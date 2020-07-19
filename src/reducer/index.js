@@ -9,6 +9,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         article: action.payload
       };
+    case "DEL_ARTICLE":
+      console.log(state.article.filter(e => e.id !== action.payload));
+      return {
+        ...state,
+        article: state.article.filter(e => e.id !== action.payload)
+      };
     default:
       return state;
   }
